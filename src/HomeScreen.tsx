@@ -1,7 +1,8 @@
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
+import LoginScreen from './auth/login'; // <-- ADD THIS
 
 export default function HomeScreen() {
   const [jwt, setJwt] = useState<string | null>(null);
@@ -14,12 +15,9 @@ export default function HomeScreen() {
     loadToken();
   }, []);
 
+  // ⭐ REPLACE YOUR SPINNER BLOCK WITH THIS:
   if (!jwt) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+    return <LoginScreen />;
   }
 
   return (

@@ -2,13 +2,18 @@
   "expo": {
     "name": "PickleRotator",
     "slug": "PickleRotator",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "picklerotator",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.murph.pickleRotator",
+      "buildNumber": "6",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -34,11 +39,19 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d8e76026-9259-45ed-9292-2f6e71f695b1"
+      },
+      "googleIosClientId": "744329260671-b8f34ej1pd0mlvu3gu6861gtcnlr9a64.apps.googleusercontent.com"
     }
   }
 }

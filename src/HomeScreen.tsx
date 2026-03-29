@@ -1,30 +1,33 @@
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
-import LoginScreen from './auth/login'; // <-- ADD THIS
 
 export default function HomeScreen() {
   const [jwt, setJwt] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadToken() {
       const token = await SecureStore.getItemAsync('jwt');
       setJwt(token);
+      setLoading(false);
     }
     loadToken();
   }, []);
 
-  // ⭐ REPLACE YOUR SPINNER BLOCK WITH THIS:
-  if (!jwt) {
-    return <LoginScreen />;
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
   return (
     <WebView
       source={{
         uri: 'https://picklerotator.com',
-        headers: { Authorization: `Bearer ${jwt}` },
       }}
       style={{ flex: 1 }}
     />
